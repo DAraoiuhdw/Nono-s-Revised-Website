@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import { stores } from "@/lib/store-data";
 import { MapPin, Clock, Phone, Search, Sparkles } from "lucide-react";
 
@@ -33,31 +34,39 @@ export function OurStores() {
         </motion.div>
 
         <div ref={gridRef}>
-          <motion.div initial={{ opacity: 0 }} animate={gridInView ? { opacity: 1 } : {}} transition={{ duration: 0.4 }} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <motion.div initial={{ opacity: 0 }} animate={gridInView ? { opacity: 1 } : {}} transition={{ duration: 0.4 }} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((store, i) => (
-              <motion.div key={store.name} initial={{ opacity: 0, y: 20 }} animate={gridInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4, delay: Math.min(i * 0.03, 0.5) }} className="rounded-2xl border border-[#E8D5B7]/60 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                <h3 className="mb-3 font-serif text-lg font-bold text-[#3D1F0D]">{store.name}</h3>
-                <div className="mb-2 flex items-start gap-2">
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#5B9EC9]" />
-                  <p className="text-[13px] leading-relaxed text-[#6B3A2A]/70">{store.address}</p>
+              <motion.div key={store.name} initial={{ opacity: 0, y: 20 }} animate={gridInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4, delay: Math.min(i * 0.03, 0.5) }} className="group overflow-hidden rounded-2xl border border-[#E8D5B7]/60 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                {/* Store Image */}
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <Image src={store.image} alt={`Nono's ${store.name}`} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                  <h3 className="absolute bottom-3 left-4 font-serif text-lg font-bold text-white drop-shadow-md">{store.name}</h3>
                 </div>
-                <div className="mb-2 flex items-start gap-2">
-                  <Clock className="mt-0.5 h-4 w-4 shrink-0 text-[#5B9EC9]" />
-                  <div className="text-[13px] text-[#6B3A2A]/70">{store.hours.map((h, j) => <span key={j} className="block">{h}</span>)}</div>
-                </div>
-                <div className="mb-3 flex items-center gap-2">
-                  <Phone className="h-4 w-4 shrink-0 text-[#5B9EC9]" />
-                  <a href={`tel:${store.phone}`} className="text-[13px] text-[#5B9EC9] hover:underline">{store.phone}</a>
-                </div>
-                {store.features && (
-                  <div className="flex flex-wrap gap-1.5">
-                    {store.features.map((f) => (
-                      <span key={f} className="inline-flex items-center gap-1 rounded-full bg-[#FDF6EC] px-2.5 py-1 text-[11px] font-medium text-[#6B3A2A]">
-                        <Sparkles className="h-3 w-3 text-[#5B9EC9]" />{f}
-                      </span>
-                    ))}
+                {/* Store Info */}
+                <div className="p-5">
+                  <div className="mb-2 flex items-start gap-2">
+                    <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#5B9EC9]" />
+                    <p className="text-[13px] leading-relaxed text-[#6B3A2A]/70">{store.address}</p>
                   </div>
-                )}
+                  <div className="mb-2 flex items-start gap-2">
+                    <Clock className="mt-0.5 h-4 w-4 shrink-0 text-[#5B9EC9]" />
+                    <div className="text-[13px] text-[#6B3A2A]/70">{store.hours.map((h, j) => <span key={j} className="block">{h}</span>)}</div>
+                  </div>
+                  <div className="mb-3 flex items-center gap-2">
+                    <Phone className="h-4 w-4 shrink-0 text-[#5B9EC9]" />
+                    <a href={`tel:${store.phone}`} className="text-[13px] text-[#5B9EC9] hover:underline">{store.phone}</a>
+                  </div>
+                  {store.features && (
+                    <div className="flex flex-wrap gap-1.5">
+                      {store.features.map((f) => (
+                        <span key={f} className="inline-flex items-center gap-1 rounded-full bg-[#FDF6EC] px-2.5 py-1 text-[11px] font-medium text-[#6B3A2A]">
+                          <Sparkles className="h-3 w-3 text-[#5B9EC9]" />{f}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </motion.div>
             ))}
           </motion.div>
