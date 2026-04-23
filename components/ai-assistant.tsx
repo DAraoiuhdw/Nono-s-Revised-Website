@@ -119,7 +119,7 @@ export function AiAssistant() {
 
   return (
     <section className="bg-[#FDF6EC] px-6 py-24 md:px-12 md:py-32">
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-4xl">
         <motion.div ref={titleRef} initial={{ opacity: 0, y: 30 }} animate={titleInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="mb-12 text-center">
           <span className="mb-4 block text-xs font-semibold uppercase tracking-[4px] text-[#5B9EC9]"><Sparkles className="mb-1 mr-1.5 inline h-4 w-4" />Dish Finder</span>
           <h2 className="font-serif text-4xl font-bold text-[#3D1F0D] md:text-5xl">What are you craving?</h2>
@@ -128,7 +128,7 @@ export function AiAssistant() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={titleInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.2 }} className="overflow-hidden rounded-3xl border border-[#E8D5B7]/60 bg-white shadow-sm">
-          <div className="min-h-[300px] max-h-[500px] overflow-y-auto p-6 space-y-4">
+          <div className="min-h-[400px] max-h-[600px] overflow-y-auto p-8 space-y-5">
             {messages.length === 0 && (
               <div className="flex flex-col items-center justify-center py-12 text-center">
                 <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#5B9EC9]/10">
@@ -176,11 +176,11 @@ export function AiAssistant() {
               </motion.div>
             )}
           </div>
-          <div className="border-t border-[#E8D5B7]/40 p-4">
+          <div className="border-t border-[#E8D5B7]/40 p-5">
             <div className="flex items-center gap-3">
-              <input type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSend(); } }} placeholder='e.g. "something sweet", "hearty Filipino food"...' className="flex-1 rounded-full border border-[#E8D5B7] bg-[#FDF6EC] px-5 py-3 text-[14px] text-[#3D1F0D] placeholder-[#6B3A2A]/35 transition-all focus:border-[#5B9EC9] focus:outline-none focus:ring-2 focus:ring-[#5B9EC9]/20" id="ai-craving-input" />
-              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={handleSend} disabled={!input.trim() || isTyping} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#5B9EC9] text-white shadow-md transition-all disabled:opacity-40" aria-label="Send message">
-                <Send className="h-4 w-4" />
+              <input type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSend(); } }} placeholder='e.g. "something sweet", "hearty Filipino food"...' className="flex-1 rounded-full border border-[#E8D5B7] bg-[#FDF6EC] px-5 py-3.5 text-[15px] text-[#3D1F0D] placeholder-[#6B3A2A]/35 transition-all focus:border-[#5B9EC9] focus:outline-none focus:ring-2 focus:ring-[#5B9EC9]/20" id="ai-craving-input" />
+              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={handleSend} disabled={!input.trim() || isTyping} className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#5B9EC9] text-white shadow-md transition-all disabled:opacity-40" aria-label="Send message">
+                <Send className="h-5 w-5" />
               </motion.button>
             </div>
           </div>

@@ -26,16 +26,6 @@ export function Footer() {
   return (
     <footer ref={ref} id="contact" className="bg-[#FDF6EC] px-6 pt-20 pb-8 md:px-12">
       <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="mx-auto max-w-6xl">
-        {/* Newsletter Banner */}
-        <div className="mb-16 rounded-3xl bg-[#3D1F0D] p-8 text-center md:p-12">
-          <h3 className="mb-3 font-serif text-2xl font-bold text-white md:text-3xl">Stay Connected with Nono&apos;s</h3>
-          <p className="mx-auto mb-6 max-w-md text-[14px] text-white/60">Subscribe to our newsletter and get updates on our latest comfort food offerings, promos, and exclusive perks.</p>
-          <div className="mx-auto flex max-w-md gap-2">
-            <input type="email" placeholder="Your email address" className="flex-1 rounded-full border border-white/10 bg-white/10 px-5 py-3 text-[14px] text-white placeholder-white/40 backdrop-blur-sm transition-all focus:border-[#5B9EC9] focus:outline-none focus:ring-2 focus:ring-[#5B9EC9]/30" id="newsletter-email" />
-            <button className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#5B9EC9] text-white transition-transform hover:scale-105" aria-label="Subscribe"><ArrowRight className="h-5 w-5" /></button>
-          </div>
-        </div>
-
         {/* Logo */}
         <div className="mb-14 flex justify-center">
           <img src="https://nonos.ph/wp-content/uploads/2023/10/nonoslogo-grey-optimized.png" alt="Nono's Comfort Kitchen & Bakery" style={{ height: "50px", width: "auto" }} />
